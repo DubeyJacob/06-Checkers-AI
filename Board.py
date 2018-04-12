@@ -162,7 +162,15 @@ class Piece:
 					to_return.append(p)
 		return to_return
 		
-	
+	def get_valid_possibilities(self, squares, pieces):
+		to_return = self.get_possibilities(squares)
+		print(to_return)
+		for p in pieces:
+			if p.alive:
+				try: to_return.remove(p.position)
+				except ValueError: pass
+		return to_return
+
 	def move(self,col,row):
 		self.position = (self.col,self.row) = (col,row)
 		self.pos = (self.x,self.y) = ((self.col*self.w)+(self.w//2),(self.row*self.h)+(self.h//2))
